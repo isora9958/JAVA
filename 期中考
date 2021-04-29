@@ -127,13 +127,13 @@ Fibonacci of 9 is: 34
 Fibonacci of 10 is: 55
 
 (2)
-public class Iterative {
+public class Interation {
     public void IteratArr(int alength,int arrZero,int arrOne){   
 		int[] arr = new int[alength];
 		arr[0]=arrZero;
 		arr[1]=arrOne;
 		int sum =alength-2;
-		for(int i=1;i<sum;i++){
+		for(int i=1;i<=sum;i++){
 			arr[i+1]=arr[i]+arr[i-1];
 		}
 		for(int i=0;i<arr.length;i++){
@@ -142,7 +142,7 @@ public class Iterative {
 	}
 	public static void main(String[] args) {
 		Interation test = new Interation();
- 		test InteraArr(5,0,1);
+ 		test.IteratArr(5, 0, 1);
 	}
 }
 	
