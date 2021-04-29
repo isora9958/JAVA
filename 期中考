@@ -1,0 +1,168 @@
+[1]舉例說明　傳值呼叫(call by value)　與　參考呼叫(call by reference)
+[2]舉例說明　方法多載
+
+[1]
+package ex05;
+
+public class CallByVal {
+	public static void main(String[] args) {
+		int a = 10, b = 15;
+		System.out.println(" 傳值呼叫前\ta=" + a + "\tb=" + b );
+		byVal(a, b);
+		System.out.println(" 傳值呼叫後\ta=" + a + "\tb=" + b );
+	}
+
+	static void byVal(int x, int y) {
+		int t; //以變數t作為暫存區，將引數互換
+		t = x;
+		x = y;
+		y = t;
+		System.out.println(" 傳值呼叫中\tx=" + x + "\ty=" + y );
+	}
+}
+
+傳值呼叫前	a=10	b=15
+ 傳值呼叫中	x=15	y=10
+ 傳值呼叫後	a=10	b=15
+
+呼叫敘述的實引數與被呼叫方法的虛引數是分別占用不同記憶體 因此使用傳直呼叫可以防止變數被方法更改
+
+package ex05;
+
+class Obj {
+	int a, b;
+
+	Obj() {
+		a = 10;
+		b = 15;
+	}
+}
+
+public class CallByRef {
+	public static void main(String[] args) {
+		Obj obj = new Obj();
+		System.out.println(" 參考呼叫前\t a = " + obj.a + "\tb = " + obj.b);
+		byRef(obj);
+		System.out.println(" 參考呼叫後\t a = " + obj.a + "\tb = " + obj.b);
+	}
+
+	static void byRef(Obj p) {
+		int t;
+		t = p.a;
+		p.a = p.b;
+		p.b = t;
+	}
+}
+
+參考呼叫前	 a = 10	b = 15
+ 參考呼叫後	 a = 15	b = 10
+
+呼叫敘述的實引數與被呼叫方法的虛引數兩者占用同一記憶體位址 在做引數傳遞時 護轎敘述中的實引數是將自己本身的記憶體為只傳給被呼叫方法的虛引數
+因此 以參考呼叫傳遞引數的好處就是被呼叫方法可以透過該引數直接將資料直傳回給呼叫敘述
+
+[2]
+package ex05;
+
+public class AddNum {
+	public static void main(String[] args) {
+		int total1, x=17, y=28;
+		double total2, i=3.8, j=22.7, k=15.1;
+		total1 = add(x, y);
+		total2 = add(i, j, k);
+		System.out.printf("%d%n",total1);
+		System.out.printf("%f%n",total2);
+	}
+	static int add(int a, int b) {
+		return a + b; // 傳回兩個整數相加的結果
+	}
+	static double add(double a, double b, double c) {
+		return a + b + c; // 傳回三個倍精確度相加的結果
+	}
+}
+
+45
+41.600000
+
+-----------------------------------------------------------------
+費氏數列值第1及第2 項皆為1，
+第3項之後的公式為f(n)= f(n-1) + f(n-2)。
+
+1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233
+
+使用者輸入一個正整數X，計算出費氏數列的第X項並輸出。
+
+計算費氏數列的第X項，請輸入X= 12  
+==>  費氏數列的第12項= 144
+
+(1)請使用靜態遞迴方法算出費氏數列。
+(2)請使用 iterative方法算出費氏數列。
+
+
+(1)
+public class MainClass {
+    public static void main(String[] args) {
+        for (int counter = 0; counter <= 10; counter++){
+            System.out.printf("Fibonacci of %d is: %d\n", counter, fibonacci(counter));
+        }
+    }
+ 
+    public static long fibonacci(long number) {
+        if ((number == 0) || (number == 1))
+            return number;
+        else
+            return fibonacci(number - 1) + fibonacci(number - 2);
+    }
+}
+
+Fibonacci of 0 is: 0
+Fibonacci of 1 is: 1
+Fibonacci of 2 is: 1
+Fibonacci of 3 is: 2
+Fibonacci of 4 is: 3
+Fibonacci of 5 is: 5
+Fibonacci of 6 is: 8
+Fibonacci of 7 is: 13
+Fibonacci of 8 is: 21
+Fibonacci of 9 is: 34
+Fibonacci of 10 is: 55
+
+(2)
+public class Iterative {
+    public static long Fibonacci(int n)
+    {
+        long v1 = 0;
+        long v2 = 1;
+        long result = n;
+        for (int i = 2; i <= n; ++i)
+        {
+            result = v2 + v1;
+            v1 = v2;
+            v2 = result;
+        }
+        return result;
+    }
+}
+
+
+import java.math.BigInteger;
+public class File05_Fibonacci {
+	public static void main(String[] args) {
+		//通过递归实现斐波那契数列的计算
+		//1 1 2 3 5 8 13 21 
+		System.out.println(fun(8));
+		//通过非递归方法实现斐波那契数列的计算
+		fun2(8);
+	}
+	public static void fun2(int z ) {
+		int [] arr = new int[z];
+		 arr[0]=1;
+		 arr[1]=1;
+		for(int j =2; j<arr.length;j++) {
+			arr[j] = arr [j-2] + arr[j-1]; 
+		}
+		System.out.println(arr[arr.length-1]);
+	}
+}
+
+
+1493
