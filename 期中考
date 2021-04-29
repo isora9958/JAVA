@@ -128,21 +128,22 @@ Fibonacci of 10 is: 55
 
 (2)
 public class Iterative {
-    public void IteratArr(int alength,int arrZero,int arrOne){
-    
-    {
-        int[] arr = new int[alength];
-	arr[0]=arrZero;
-	arr[1]=arrOne;
-	int sum =alength-2;
-	for(int i=1;i<sum;i++){
-		arr[i+1]=arr.length;i++{
+    public void IteratArr(int alength,int arrZero,int arrOne){   
+		int[] arr = new int[alength];
+		arr[0]=arrZero;
+		arr[1]=arrOne;
+		int sum =alength-2;
+		for(int i=1;i<sum;i++){
+			arr[i+1]=arr[i]+arr[i-1];
+		}
+		for(int i=0;i<arr.length;i++){
 			System.out.print(arr[i]+"");
+		}
 	}
-}
-public static void main(String[] args) {
- Interation test = new Interation();
- test InteraArr(5,0,1);
+	public static void main(String[] args) {
+		Interation test = new Interation();
+ 		test InteraArr(5,0,1);
+	}
 }
 	
 0 1 1 2 3	
